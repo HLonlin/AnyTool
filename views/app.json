@@ -1,7 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/note/note",
+    "pages/mine/mine",
+    "pages/blog/blog",
+    "pages/lose/lose"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -9,6 +13,38 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "AnyTool",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index/icon_home.png",
+        "selectedIconPath": "images/index/icon_home_on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/note/note",
+        "iconPath": "images/note/icon_note.png",
+        "selectedIconPath": "images/note/icon_note_on.png",
+        "text": "笔记"
+      },
+      {
+        "pagePath": "pages/blog/blog",
+        "iconPath": "images/blog/icon_blog.png",
+        "selectedIconPath": "images/blog/icon_blog_on.png",
+        "text": "博客"
+      },
+      {
+        "pagePath": "pages/lose/lose",
+        "iconPath": "images/mine/icon_mine.png",
+        "selectedIconPath": "images/mine/icon_mine_on.png",
+        "text": "我的"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
