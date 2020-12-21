@@ -4,6 +4,15 @@
 @import "../../font/Playball/Playball.wxss";
 
 .swiper_container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+#canvasItem{
+  position: absolute;
+  top: 0px;
+  width: 100vw;
   height: 100vh;
 }
 
@@ -11,7 +20,6 @@
   display: block !important;
   width: 100%;
   height: 100vh;
-  position: relative;
   align-items: center;
   justify-content: center;
 }

@@ -2,21 +2,22 @@
 <import src="../../components/header/header.wxml"></import>
 <import src="../../components/footer/footer.wxml"></import>
 <view class="container">
-  
   <!-- <template is="header" data="{{data:header}}"></template> -->
-  <swiper class="swiper_container" indicator-dots="{{indicator}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" current="{{current}}">
-    <block wx:for="{{swiperItem_list}}" wx:key="*this">
-      <swiper-item style="backgroundImage:{{backgrounImg}};">
-        <image class="inner_image" src="{{item}}" mode="aspectFill"></image>
-        <canvas class="swiper-item" canvas-id="{{item}}" type="2d">
+  <div class="swiper_container">
+    <canvas id="canvasItem" canvas-id="{{item}}" type="2d"></canvas>
+    <swiper class="swiper_container" indicator-dots="{{indicator}}" autoplay="{{autoplay}}" interval="{{interval}}"
+      duration="{{duration}}" circular="{{circular}}" current="{{current}}">
+      <block wx:for="{{swiperItem_list}}" wx:key="*this">
+        <swiper-item style="backgroundImage:{{backgrounImg}};" class="swiper-item">
+          <image class="inner_image" src="{{item}}" mode="aspectFill"></image>
           <view class="inner">
             <p class="header-title">HLonlin</p>
             <p class="header-description" id="hitokoto" style="display: block;">{{verse.content}}</p>
             <p class="header-info" id="hitokotoAuthor" style="display: block;">{{verse.title}}</p>
           </view>
-        </canvas>
-      </swiper-item>
-    </block>
-  </swiper>
+        </swiper-item>
+      </block>
+    </swiper>
+  </div>
   <template is="footer"></template>
 </view>

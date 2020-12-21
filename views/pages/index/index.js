@@ -11,7 +11,7 @@ Page({
       sign: '台灯是夜猫子的阳光，熬夜是梦想者的倔强。',
       url: '/pages/index/index'
     },
-    swiperItem_list: ['../../images/index/1.jpg', '../../images/index/2.jpg', '../../images/index/3.jpg'],
+    swiperItem_list: ['../../images/index/1.jpg', '../../images/index/2.jpg', '../../images/index/3.jpg', '../../images/index/4.jpg', '../../images/index/5.jpg'],
     indicator: false,
     autoplay: false,
     interval: 4000,
@@ -56,85 +56,99 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function () {},
   fillCanvas: function () {
     let that = this;
-    let canvasList = [];
     let query = wx.createSelectorQuery();
 
     var width, height, canvas, ctx, animateHeader = true;
     var circles = [];
 
     var settings = {
-      color: 'rgba(255,255,255,.5)',
-      radius: 10,
-      density: 0.3,
+      // color: 'rgba(255,255,255,.5)', // 颜色
+      color: 'random', // 随机颜色
+      radius: 10, // 气泡大小
+      density: 0.8, // 密度
       clearOffset: 0.2
     };
-    // for (var i = 0, imax = that.data.swiperItem_list.length; i < imax; i++) {
-    //   query.select('#canvasItem' + i)
-    //     .fields({
-    //       node: true,
-    //       size: true
-    //     })
-    //     .exec((res) => {
-    //       canvas=res[0].node;
-    //       ctx = canvas.getContext('2d');
-    //       width=canvas.width;
-    //       height=canvas.height;
-    //     })
-    // }
-    // function animate() {
-    //   if (animateHeader) {
-    //     ctx.clearRect(0, 0, width, height);
-    //     for (var i in circles) {
-    //       circles[i].draw();
-    //     }
-    //   }
-    //   requestAnimationFrame(animate);
-    // }
-    // function randomColor() {
-    //   var r = Math.floor(Math.random() * 255);
-    //   var g = Math.floor(Math.random() * 255);
-    //   var b = Math.floor(Math.random() * 255);
-    //   var alpha = Math.random().toPrecision(2);
-    //   return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
-    // }
-    // function Circle() {
-    //   var that = this;
-    //   // constructor
-    //   (function () {
-    //     that.pos = {};
-    //     init();
-    //   })();
+    query.select('#canvasItem')
+      .fields({
+        node: true,
+        size: true
+      })
+      .exec((res) => {
+        canvas = res[0].node;
+        ctx = canvas.getContext('2d');
+        width = canvas.width;
+        height = canvas.height;
 
-    //   function init() {
-    //     that.pos.x = Math.random() * width;
-    //     that.pos.y = height + Math.random() * 100;
-    //     that.alpha = 0.1 + Math.random() * settings.clearOffset;
-    //     that.scale = 0.1 + Math.random() * 0.3;
-    //     that.speed = Math.random();
-    //     if (settings.color === 'random') {
-    //       that.color = randomColor();
-    //     }
-    //     else {
-    //       that.color = settings.color;
-    //     }
-    //   }
+        //  create circles
+        for (var x = 0; x < width * settings.density; x++) {
+          var c = new Circle();
+          circles.push(c);
+        }
+        animate();
+      })
 
-    //   this.draw = function () {
-    //     if (that.alpha <= 0) {
-    //       init();
-    //     }
-    //     that.pos.y -= that.speed;
-    //     that.alpha -= 0.0005;
-    //     ctx.beginPath();
-    //     ctx.arc(that.pos.x, that.pos.y, that.scale * settings.radius, 0, 2 * Math.PI, false);
-    //     ctx.fillStyle = that.color;
-    //     ctx.fill();
-    //     ctx.closePath();
-    //   };
-    // }
+    function animate() {
+      if (animateHeader) {
+        ctx.clearRect(0, 0, width, height);
+        for (var i in circles) {
+          circles[i].draw();
+        }
+      }
+      canvas.requestAnimationFrame(animate);
+    }
+
+    function randomColor() {
+      var r = Math.floor(Math.random() * 255);
+      var g = Math.floor(Math.random() * 255);
+      var b = Math.floor(Math.random() * 255);
+      var alpha = Math.random().toPrecision(2);
+      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+    }
+
+    function Circle() {
+      var that = this;
+      // constructor 气泡构造器
+      (function () {
+        that.pos = {};
+        init();
+      })();
+
+      function init() {
+        that.pos.x = Math.random() * width;
+        that.pos.y = height + Math.random() * 1000;
+        that.alpha = 0.1 + Math.random() * settings.clearOffset;
+        that.scale = 0.1 + Math.random() * 0.4;
+        that.speed = Math.random();
+        if (settings.color === 'random') {
+          that.color = randomColor();
+        } else {
+          that.color = settings.color;
+        }
+      }
+
+      this.draw = function () {
+        if (that.alpha <= 0) {
+          init();
+        }
+        that.pos.y -= that.speed;
+        that.alpha -= 0.001;
+        ctx.beginPath();
+        ctx.arc(that.pos.x, that.pos.y, that.scale * settings.radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = that.color;
+        ctx.fill();
+        ctx.closePath();
+      };
+
+      function randomColor() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        var alpha = Math.random().toPrecision(2);
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+      }
+    }
   }
 })
