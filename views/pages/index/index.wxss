@@ -1,1 +1,55 @@
 /* views/index/index.wxss */
+@import "../../components/header/header.wxss";
+@import "../../components/footer/footer.wxss";
+@import "../../font/Playball/Playball.wxss";
+
+.swiper_container {
+  height: 100vh;
+}
+
+.swiper-item {
+  display: block !important;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-item:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  content: '';
+}
+
+.inner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align:center;
+}
+.inner_image{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+.header-title{
+  font-family: 'Playball';
+  color:#ffffff;
+  font-size: 1.875rem;
+}
+.header-description{
+  width: 46.875rem;
+  font-size: 1rem;
+  color:#fff;
+}
+.header-info{
+  font-size:0.75rem;
+  color:#fff;
+}

@@ -1,4 +1,6 @@
 //app.js
+import Api from "./server/api";
+import tools from "./tool/tools";
 App({
   // 初始化
   onLaunch: function () {
@@ -15,6 +17,8 @@ App({
       })
     }
     // 全局数据
-    this.globalData = {}
+    this.globalData = {};
+    this.Api=Api;
+    this.tools=tools;
   }
 })

@@ -1,0 +1,12 @@
+<!--components/header/header.wxml-->
+<template name="header">
+  <view class="page_head">
+    <view class="page_head_container">
+      <navigator class="page_head_title" url="{{data.url}}" open-type="navigateTo">
+        {{data.title}}
+      </navigator>
+      <view class="page_head_sign">{{data.sign}}</view>
+    </view>
+  </view>
+</template>
+

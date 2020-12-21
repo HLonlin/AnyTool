@@ -1,2 +1,22 @@
 <!--views/index/index.wxml-->
-<view>首页</view>
+<import src="../../components/header/header.wxml"></import>
+<import src="../../components/footer/footer.wxml"></import>
+<view class="container">
+  
+  <!-- <template is="header" data="{{data:header}}"></template> -->
+  <swiper class="swiper_container" indicator-dots="{{indicator}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" current="{{current}}">
+    <block wx:for="{{swiperItem_list}}" wx:key="*this">
+      <swiper-item style="backgroundImage:{{backgrounImg}};">
+        <image class="inner_image" src="{{item}}" mode="aspectFill"></image>
+        <canvas class="swiper-item" canvas-id="{{item}}" type="2d">
+          <view class="inner">
+            <p class="header-title">HLonlin</p>
+            <p class="header-description" id="hitokoto" style="display: block;">{{verse.content}}</p>
+            <p class="header-info" id="hitokotoAuthor" style="display: block;">{{verse.title}}</p>
+          </view>
+        </canvas>
+      </swiper-item>
+    </block>
+  </swiper>
+  <template is="footer"></template>
+</view>
